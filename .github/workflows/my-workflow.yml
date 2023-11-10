@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Compose
-        uses: isbang/compose-action@v1.5.1
+        uses: adambirds/docker-compose-action@v1.3.0
         with:
             compose-file: "./docker-compose.yml"
             down-flags: "--volumes"
@@ -19,8 +19,5 @@ jobs:
                     hospital-auth
                     hospital-database
                     hospital-database-test
-      - name: Test
-        run: |
-          cd hospital
-          npm ci
-          npm test
+            test-container: hospital-app
+            test-command: npm test
