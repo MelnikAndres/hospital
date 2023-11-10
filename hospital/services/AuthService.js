@@ -1,4 +1,4 @@
-const HOST = process.env.NODE_ENV === 'test' ? 'localhost' : 'hospital-auth'
+const HOST = process.env.NODE_ENV === 'localtest' ? 'localhost' : 'hospital-auth'
 const ERROR_LOGIN_INFO = 'Wrong name or password'
 
 class AuthService {

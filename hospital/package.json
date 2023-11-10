@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000 -w 1",
+    "test:local": "cross-env NODE_ENV=localtest jest --testTimeout=6500 -w 1",
     "lint": "npx eslint  . --ext .js",
     "lint:fix": "npx eslint  . --ext .js --fix"
   },
