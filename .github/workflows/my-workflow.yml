@@ -1,11 +1,11 @@
 name: CI
 on:
     push:
-        branches: [ master ]
+        branches: [ "master" ]
     pull_request:
-        branches: [ master ]
+        branches: [ "master" ]
 jobs:
-  build_and_test:
+  compose_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
