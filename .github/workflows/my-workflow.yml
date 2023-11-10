@@ -22,4 +22,5 @@ jobs:
       - name: Test
         run: |
           cd hospital
+          npm ci
           npm test
