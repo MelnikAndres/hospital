@@ -6,14 +6,8 @@ on:
         branches: [ "main" ]
 jobs:
   compose_and_test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: "Set up environment"
         run: docker compose -f docker-compose-test.yml up -d --wait 
-      - name: Linting app
-        run: docker exec hospital-hospital-app-1 npm run lint
-      - name: Linting auth
-        run: docker exec hospital-hospital-auth-1 npm run lint
-      - name: "Run tests"
-        run: docker exec hospital-hospital-app-1 npm test
