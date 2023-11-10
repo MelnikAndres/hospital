@@ -13,7 +13,7 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
             compose-file: "./docker-compose.yml"
-            down-flags: "--volumes -d --wait"
+            down-flags: "--wait"
             services: |
                     hospital-app
                     hospital-auth
