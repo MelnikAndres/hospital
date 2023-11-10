@@ -1,6 +1,9 @@
-const authService = require('../services/AuthService')
+const AuthService = require('../services/AuthService')
+const UserService = require('../services/UserService')
 
 async function authMiddleware(req, res, next) {
+
+    const authService = new AuthService(new UserService())
     const token = req.cookies.jwt;
     if(!token){
         req.logged = false

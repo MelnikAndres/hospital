@@ -1,10 +1,10 @@
 const pgp = require("pg-promise")();
 const dbConfig = {
     user: 'hospital',
-    database: 'hospital-flow',
+    database: 'hospital',
     password: 'test123',
-    host: 'hospital-database', 
-    port: 5432,
+    host: process.env.NODE_ENV === 'test'? 'localhost':'hospital-database', 
+    port: process.env.NODE_ENV === 'test'? 8081: 5432,
     allowExitOnIdle: true
 };
 const db = pgp(dbConfig);

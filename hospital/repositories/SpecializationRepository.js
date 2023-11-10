@@ -6,4 +6,4 @@ class SpecializationRepository{
     }
 }
 
-module.exports = new SpecializationRepository()
+module.exports = SpecializationRepository

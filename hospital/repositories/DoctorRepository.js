@@ -16,4 +16,4 @@ class DoctorRepository{
     }
 }
 
-module.exports = new DoctorRepository()
+module.exports = DoctorRepository

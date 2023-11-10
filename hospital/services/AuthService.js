@@ -1,12 +1,15 @@
-const userService = require('./UserService')
-
-const HOST = 'hospital-auth';
+const HOST = process.env.NODE_ENV === 'test' ? 'localhost' : 'hospital-auth';
 const ERROR_LOGIN_INFO = "Wrong name or password"
 
 class AuthService {
 
+    #userService;
+    constructor(userService){
+        this.#userService = userService
+    }
+
     async newSignedToken(name, password) {
-        const user = await userService.getUserByNameAndPassword(name, password)
+        const user = await this.#userService.getUserByNameAndPassword(name, password)
         if (!user) throw new Error(ERROR_LOGIN_INFO)
         const payload = {
             "iss": "hospital-app",
@@ -22,7 +25,7 @@ class AuthService {
             body: JSON.stringify({ "payload": payload })
         })).json()
         if (!data.errors) {
-            await userService.updateSalt(user.id, data.salt)
+            await this.#userService.updateSalt(user.id, data.salt)
         }
         return data
     }
@@ -40,4 +43,4 @@ class AuthService {
     }
 }
 
-module.exports = new AuthService()
+module.exports = AuthService

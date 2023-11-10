@@ -1,12 +1,14 @@
 const { isSameUser, isAdmin } = require('../../utils/Authorization')
-const userService = require('../../services/UserService')
+const UserService = require('../../services/UserService')
 
 class UserController {
+
+    #userService = new UserService()
 
     async getAllUsers(req, res) {
         if (!isAdmin(req.role)) return res.sendStatus(403)
         try{
-            const users = await userService.getAllUsers(req.query.name, req.query.role)
+            const users = await this.#userService.getAllUsers(req.query.name, req.query.role)
             return res.status(200).json(users)
         }catch(err){
             return res.status(500).json({ errors: [err] })
@@ -20,7 +22,7 @@ class UserController {
         if (errors) return res.status(400).json({ errors })
 
         try{
-            await userService.createAdminUser(req.body.name, req.body.password, req.body.role)
+            await this.#userService.createAdminUser(req.body.name, req.body.password, req.body.role)
             return res.sendStatus(200)
         }catch(err){
             return res.status(500).json({ errors: [err] })
@@ -33,7 +35,7 @@ class UserController {
         if (!isAdmin(req.role) && !isSameUser(req.uid, userId)) return res.sendStatus(403)
 
         try{
-            const user = await userService.getUserById(userId)
+            const user = await this.#userService.getUserById(userId)
             if(!user) return res.sendStatus(404)
             return res.status(200).json(user)
         }catch(err){
@@ -50,7 +52,7 @@ class UserController {
         if (errors) return res.status(400).json({ errors })
 
         try{
-            await userService.updateUser(userId, req.body.name, req.body.new_pass)
+            await this.#userService.updateUser(userId, req.body.name, req.body.new_pass)
             return res.sendStatus(200)
         }catch(err){
             return res.status(500).json({ errors: [err] })
@@ -63,7 +65,7 @@ class UserController {
         if (!isAdmin(req.role)) return res.sendStatus(403)
 
         try{
-            await userService.deleteUser(userId)
+            await this.#userService.deleteUser(userId)
             return res.sendStatus(200)
         }catch(err){
             return res.status(500).json({ errors: [err] })

@@ -4,7 +4,6 @@ services:
     build:
       context: ./hospital
     links:
-      - hospital-database
       - hospital-database-test
     volumes:
       - ./hospital:/usr/src/app
@@ -21,8 +20,8 @@ services:
       - /usr/src/app/node_modules
     ports:
       - 3030:3030
-
-  hospital-database:
+  
+  hospital-database-test:
     image: postgres:latest
     restart: always
     environment:
@@ -32,4 +31,4 @@ services:
     volumes:
       - ./database:/docker-entrypoint-initdb.d
     ports:
-      - 8080:5432
+      - 8081:5432

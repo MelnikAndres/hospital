@@ -82,4 +82,4 @@ class AppointmentRepository extends Filterable{
 
 }
 
-module.exports = new AppointmentRepository()
+module.exports = AppointmentRepository

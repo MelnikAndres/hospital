@@ -3,9 +3,9 @@ const router = express.Router()
 
 const AppointmentController = require('../controllers/appointment/appointmentController')
 
-router.post('/', AppointmentController.createAppointment)
-router.get('/', AppointmentController.getAppointments)
-router.put('/:id', AppointmentController.updateAppointment)
-router.delete('/:id', AppointmentController.deleteAppointment)
+router.post('/', AppointmentController.createAppointment.bind(AppointmentController))
+router.get('/', AppointmentController.getAppointments.bind(AppointmentController))
+router.put('/:id', AppointmentController.updateAppointment.bind(AppointmentController))
+router.delete('/:id', AppointmentController.deleteAppointment.bind(AppointmentController))
 
 module.exports = router

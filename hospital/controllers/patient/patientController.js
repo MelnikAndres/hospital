@@ -1,7 +1,10 @@
-const patientService = require('../../services/PatientService');
+const PatientService = require('../../services/PatientService');
+const UserService = require('../../services/UserService');
 const { isAdmin, isPatient } = require('../../utils/Authorization');
 
 class PatientController{
+
+    #patientService = new PatientService(new UserService())
 
     async createPatient(req, res){
         if(!isAdmin(req.role)) return res.status(403)
@@ -11,7 +14,7 @@ class PatientController{
         if (errors) return res.status(400).json({ errors })
 
         try{
-            await patientService.create(req.body.name, req.body.password, req.body.role, req.body.email, req.body.phone)
+            await this.#patientService.create(req.body.name, req.body.password, req.body.role, req.body.email, req.body.phone)
             return res.sendStatus(200)
         }catch(err){
             return res.status(500).json({ errors: [err] })
@@ -26,7 +29,7 @@ class PatientController{
         const errors = updatePatientSchema.validate(req.body)
         if (errors) return res.status(400).json({ errors })
         try{
-            await patientService.update(req.body.email, req.body.phone, userId)
+            await this.#patientService.update(req.body.email, req.body.phone, userId)
             return res.sendStatus(200)
         }catch(err){
             return res.status(500).json({ errors: [err] })
@@ -39,7 +42,7 @@ class PatientController{
         if(!isAuthorized) return res.status(403)
 
         try{
-            const patient = await patientService.getPatientById(userId)
+            const patient = await this.#patientService.getPatientById(userId)
             if(!patient) return res.sendStatus(404)
             res.status(200).json(patient)
         }catch(err){

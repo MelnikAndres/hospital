@@ -1,6 +1,9 @@
 const {isAdmin, isDoctor, isSameUser} = require('../../utils/Authorization')
-const doctorService = require('../../services/DoctorService')
+const DoctorService = require('../../services/DoctorService')
+const UserService = require('../../services/UserService')
 class DoctorController{
+
+    #doctorService = new DoctorService(new UserService())
 
     async createDoctor(req, res){
         if(!isAdmin(req.role)) return res.sendStatus(403)
@@ -10,7 +13,7 @@ class DoctorController{
         if (errors) return res.status(400).json({ errors })
 
         try{
-            await doctorService.create(req.body.specialization, req.body.name, req.body.password, req.body.role)
+            await this.#doctorService.create(req.body.specialization, req.body.name, req.body.password, req.body.role)
             return res.sendStatus(200)
         }catch(err){
             console.log(err)
@@ -27,7 +30,7 @@ class DoctorController{
         if (errors) return res.status(400).json({ errors })
 
         try{
-            await doctorService.updateDoctor(userId, req.body.specialization)
+            await this.#doctorService.updateDoctor(userId, req.body.specialization)
             res.sendStatus(200)
         }catch(err){
             res.status(500).json({ errors: [err] })
@@ -39,7 +42,7 @@ class DoctorController{
         const isAuthorized = isAdmin(req.role) || (isDoctor(req.role) && isSameUser(userId,req.uid))
         if(!isAuthorized) return res.sendStatus(403)
         try{
-            const doctor = await doctorService.getDoctorByUserId(userId)
+            const doctor = await this.#doctorService.getDoctorByUserId(userId)
             if(!doctor) return res.sendStatus(404)
             res.status(200).json(doctor)
         }catch(err){

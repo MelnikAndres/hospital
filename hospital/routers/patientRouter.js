@@ -4,8 +4,8 @@ const patientController = require('../controllers/patient/patientController')
 const passHashingMiddleware = require('../middleware/passHashingMiddleware')
 
 router.use(passHashingMiddleware)
-router.post('/', patientController.createPatient)
-router.put('/:id', patientController.updatePatient)
-router.get('/:id', patientController.getPatientByUserId)
+router.post('/', patientController.createPatient.bind(patientController))
+router.put('/:id', patientController.updatePatient.bind(patientController))
+router.get('/:id', patientController.getPatientByUserId.bind(patientController))
 
 module.exports = router

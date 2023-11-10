@@ -23,4 +23,4 @@ class PrescriptionRepository{
     }
 }
 
-module.exports = new PrescriptionRepository()
+module.exports = PrescriptionRepository

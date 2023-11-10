@@ -5,11 +5,11 @@ const passHashingMiddleware = require('../middleware/passHashingMiddleware')
 
 router.use(passHashingMiddleware)
 
-router.get('/', userController.getAllUsers)
-router.get('/:id', userController.getUser)
-router.post('/admin', userController.createAdminUser)
-router.put('/:id', userController.updateUser)
-router.delete('/:id', userController.deleteUser)
+router.get('/', userController.getAllUsers.bind(userController))
+router.get('/:id', userController.getUser.bind(userController))
+router.post('/admin', userController.createAdminUser.bind(userController))
+router.put('/:id', userController.updateUser.bind(userController))
+router.delete('/:id', userController.deleteUser.bind(userController))
 
 
 

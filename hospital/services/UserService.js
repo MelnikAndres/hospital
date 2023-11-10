@@ -1,32 +1,33 @@
-const userRepository = require('../repositories/UserRepository')
+const UserRepository = require('../repositories/UserRepository')
 const UserDto = require('../dtos/UserDto')
 class UserService {
+    #userRepository = new UserRepository()
 
     async create(name, password, role) {
-        const result = await userRepository.createUser(name, password, role)
+        const result = await this.#userRepository.createUser(name, password, role)
         return result.id
     }
 
     async getUserByNameAndPassword(name, password) {
-        userRepository.addNameFilter(name)
-        userRepository.addPasswordFilter(password)
-        const users = await userRepository.consumeQuery()
+        this.#userRepository.addNameFilter(name)
+        this.#userRepository.addPasswordFilter(password)
+        const users = await this.#userRepository.consumeQuery()
         return new UserDto(users[0].id,users[0].name,users[0].role)
     }
 
     async updateSalt(id, salt) {
-        await userRepository.updateUserSalt(id, salt)
+        await this.#userRepository.updateUserSalt(id, salt)
     }
 
     async getAllUsers(name,role) {
-        if (name) userRepository.addNameFilter(name)
-        if (role) userRepository.addRoleFilter(role)
-        const data = await userRepository.consumeQuery()
+        if (name) this.#userRepository.addNameFilter(name)
+        if (role) this.#userRepository.addRoleFilter(role)
+        const data = await this.#userRepository.consumeQuery()
         return data.map(user => new UserDto(user.id,user.name,user.role))
     }
 
     async createAdminUser(name, password, role) {
-        await userRepository.createUser(name, password, role)
+        await this.#userRepository.createUser(name, password, role)
     }
 
     async getUserById(id) {
@@ -36,8 +37,8 @@ class UserService {
     }
 
     async #getUser(id){
-        userRepository.addIdFilter(id)
-        const data = await userRepository.consumeQuery()
+        this.#userRepository.addIdFilter(id)
+        const data = await this.#userRepository.consumeQuery()
         if (data.length === 0) return null
         return data[0]
     }
@@ -49,11 +50,11 @@ class UserService {
 
     async updateUser(userId, name, new_pass) {
         if (!name && !new_pass) return;
-        await userRepository.updateUser(userId, name, new_pass)
+        await this.#userRepository.updateUser(userId, name, new_pass)
     }
 
     async deleteUser(userId) {
-        await userRepository.deleteUser(userId)
+        await this.#userRepository.deleteUser(userId)
     }
 
     testFunciton(){
@@ -61,4 +62,4 @@ class UserService {
     }
 }
 
-module.exports = new UserService()
+module.exports = UserService

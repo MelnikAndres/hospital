@@ -51,4 +51,4 @@ class UserRepository extends Filterable{
 
 }
 
-module.exports = new UserRepository()
+module.exports = UserRepository
