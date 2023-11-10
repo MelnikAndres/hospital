@@ -3,34 +3,34 @@ const app = require('../app')
 const { reset } = require('./tables/manage_tables')
 let cookie = null
 
-function testAll(){
+function testAll() {
     beforeAll(done => {
         reset().then(() => done())
     })
-    
+
     describe('POST /auth/login', () => {
         it('admin should be able to login', async () => {
             const res = await request(app)
                 .post('/auth/login')
                 .send({
-                    name: "Master",
-                    password: "password"
+                    name: 'Master',
+                    password: 'password'
                 })
             expect(res.statusCode).toEqual(200)
             cookie = res.headers['set-cookie'][0].split(';')[0].split('=')[1]
             expect(res.headers['set-cookie'][0]).toMatch(/jwt=/)
         })
     })
-    
+
     describe('POST /patients', () => {
         it('should create a new patient', async () => {
             const res = await request(app)
                 .post('/patients')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "Andres",
-                    password: "1234",
-                    role: "patient"
+                    name: 'Andres',
+                    password: '1234',
+                    role: 'patient'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -42,10 +42,10 @@ function testAll(){
                 .post('/doctors')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "AndresDoc",
-                    password: "1234",
-                    role: "doctor",
-                    specialization: "cardiology"
+                    name: 'AndresDoc',
+                    password: '1234',
+                    role: 'doctor',
+                    specialization: 'cardiology'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -57,10 +57,10 @@ function testAll(){
                 .post('/doctors')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "AndresDocGeneral",
-                    password: "1234",
-                    role: "doctor",
-                    specialization: "general"
+                    name: 'AndresDocGeneral',
+                    password: '1234',
+                    role: 'doctor',
+                    specialization: 'general'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -73,8 +73,8 @@ function testAll(){
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
                     patient_id: 1,
-                    symptoms: "chest pain",
-                    user_id:2
+                    symptoms: 'chest pain',
+                    user_id: 2
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -95,8 +95,8 @@ function testAll(){
             const res = await request(app)
                 .post('/auth/login')
                 .send({
-                    name: "AndresDoc",
-                    password: "1234"
+                    name: 'AndresDoc',
+                    password: '1234'
                 })
             expect(res.statusCode).toEqual(200)
             cookie = res.headers['set-cookie'][0].split(';')[0].split('=')[1]
@@ -109,10 +109,10 @@ function testAll(){
                 .post('/prescriptions')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    appointment_id:1,
+                    appointment_id: 1,
                     patient_id: 1,
-                    info: "take every 12 hs",
-                    medicine: "apixaban"
+                    info: 'take every 12 hs',
+                    medicine: 'apixaban'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -124,10 +124,10 @@ function testAll(){
                 .post('/prescriptions')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    appointment_id:1,
+                    appointment_id: 1,
                     patient_id: 1,
-                    info: "take every 12 hs",
-                    medicine: "apixaban"
+                    info: 'take every 12 hs',
+                    medicine: 'apixaban'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -139,7 +139,7 @@ function testAll(){
                 .put('/prescriptions/1')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    info: "take every 8 hs"
+                    info: 'take every 8 hs'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -170,8 +170,8 @@ function testAll(){
             const res = await request(app)
                 .post('/auth/login')
                 .send({
-                    name: "Andres",
-                    password: "1234"
+                    name: 'Andres',
+                    password: '1234'
                 })
             expect(res.statusCode).toEqual(200)
             cookie = res.headers['set-cookie'][0].split(';')[0].split('=')[1]
@@ -189,12 +189,12 @@ function testAll(){
             expect(res.body.length).toEqual(1)
             expect(res.body[0].appointment_id).toEqual(1)
             expect(res.body[0].patient_id).toEqual(1)
-            expect(res.body[0].info).toEqual("take every 8 hs")
-            expect(res.body[0].medicine).toEqual("apixaban")
+            expect(res.body[0].info).toEqual('take every 8 hs')
+            expect(res.body[0].medicine).toEqual('apixaban')
         })
     })
 
-    
+
 }
 
 testAll()

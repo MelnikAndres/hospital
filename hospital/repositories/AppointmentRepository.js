@@ -6,44 +6,44 @@ class AppointmentRepository extends Filterable{
         super(TABLE_NAME)
     }
 
-    addFilterByName(name, value, compare = "="){
+    addFilterByName(name, value, compare = '='){
         const filter = new Filter(name, compare, value)
         this.addFilter(filter)
     }
 
-    addIdFilter(id, compare = "="){
-        const filter = new Filter("id", compare, id)
+    addIdFilter(id, compare = '='){
+        const filter = new Filter('id', compare, id)
         this.addFilter(filter)
     }
 
-    addDoctorIdFilter(doctor_id, compare = "="){
-        const filter = new Filter("doctor_id", compare, doctor_id)
+    addDoctorIdFilter(doctor_id, compare = '='){
+        const filter = new Filter('doctor_id', compare, doctor_id)
         this.addFilter(filter)
     }
 
-    addPatientIdFilter(patient_id, compare = "="){
-        const filter = new Filter("patient_id", compare, patient_id)
+    addPatientIdFilter(patient_id, compare = '='){
+        const filter = new Filter('patient_id', compare, patient_id)
         this.addFilter(filter)
     }
 
     addFromToFilter(from, to){
         let filter
         if(!to){
-            filter = new Filter("date", ">=", from)
+            filter = new Filter('date', '>=', from)
             this.addFilter(filter)
             return
         }
         if(!from){
-            filter = new Filter("date", "<=", to)
+            filter = new Filter('date', '<=', to)
             this.addFilter(filter)
             return
         }
-        filter = new Filter("date", `between '${from}' and`, to)
+        filter = new Filter('date', `between '${from}' and`, to)
         this.addFilter(filter)
     }
     
-    addStatusFilter(status, compare = "="){
-        const filter = new Filter("status", compare, status)
+    addStatusFilter(status, compare = '='){
+        const filter = new Filter('status', compare, status)
         this.addFilter(filter)
     }
 

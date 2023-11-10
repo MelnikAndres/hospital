@@ -1,9 +1,9 @@
-const DoctorDto = require('../dtos/DoctorDto');
+const DoctorDto = require('../dtos/DoctorDto')
 const DoctorRepository = require('../repositories/DoctorRepository')
 
 class DoctorService {
 
-    #userService;
+    #userService
     constructor(userService){
         this.#userService = userService
     }
@@ -11,7 +11,7 @@ class DoctorService {
     #doctorRepository = new DoctorRepository()
 
     async create(specialization, name, password, role) {
-        const userId = await this.#userService.create(name, password, role);
+        const userId = await this.#userService.create(name, password, role)
         return await this.#doctorRepository.createDoctor(userId, specialization)
     }
 

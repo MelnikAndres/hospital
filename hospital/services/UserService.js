@@ -16,7 +16,7 @@ class UserService {
     }
 
     async updateSalt(id, salt) {
-        await this.#userRepository.updateUserSalt(id, salt)
+        return await this.#userRepository.updateUserSalt(id, salt)
     }
 
     async getAllUsers(name,role) {
@@ -27,11 +27,11 @@ class UserService {
     }
 
     async createAdminUser(name, password, role) {
-        await this.#userRepository.createUser(name, password, role)
+        return await this.#userRepository.createUser(name, password, role)
     }
 
     async getUserById(id) {
-        const user = await this.#getUser(id);
+        const user = await this.#getUser(id)
         if(!user) return null
         return new UserDto(user.id,user.name,user.role)
     }
@@ -49,16 +49,12 @@ class UserService {
     }
 
     async updateUser(userId, name, new_pass) {
-        if (!name && !new_pass) return;
-        await this.#userRepository.updateUser(userId, name, new_pass)
+        if (!name && !new_pass) return
+        return await this.#userRepository.updateUser(userId, name, new_pass)
     }
 
     async deleteUser(userId) {
-        await this.#userRepository.deleteUser(userId)
-    }
-
-    testFunciton(){
-        console.log("working?")
+        return await this.#userRepository.deleteUser(userId)
     }
 }
 

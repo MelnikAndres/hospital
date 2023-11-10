@@ -3,13 +3,13 @@ const {typeErrorMsg, requiredErrorMsg} = require('../../../utils/Error')
 const {SPECIALIZATION} = require('../../../utils/CommonProps')
 
 const ERRORS = {
-    SPECIALIZATION_TYPE: typeErrorMsg(SPECIALIZATION, "string"),
+    SPECIALIZATION_TYPE: typeErrorMsg(SPECIALIZATION, 'string'),
     SPECIALIZATION_REQUIRED: requiredErrorMsg(SPECIALIZATION)
 }
 const updateDoctorSchema = new Schema()
 
 updateDoctorSchema.addValidation(SPECIALIZATION,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.SPECIALIZATION_TYPE
 )
 

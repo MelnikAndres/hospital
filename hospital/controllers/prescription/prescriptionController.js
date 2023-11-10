@@ -56,7 +56,7 @@ class PrescriptionController{
         try{
             await this.#prescriptionService.deletePrescription(req.params.id)
             return res.sendStatus(200)
-        }catch{
+        }catch (err){
             return res.status(500).json({ errors: [err] })
         }
     }

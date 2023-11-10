@@ -13,7 +13,7 @@ class PrescriptionRepository{
     updatePrescription(id, info, medicine){
         let updateQuery = `update ${TABLE_NAME} set `
         if(info) updateQuery += `info = '${info}'`
-        if(medicine) updateQuery += (info? ", ": "") +`medicine = '${medicine}'`
+        if(medicine) updateQuery += (info? ', ': '') +`medicine = '${medicine}'`
         updateQuery += ` where id=${id};`
         return db.none(updateQuery)
     }

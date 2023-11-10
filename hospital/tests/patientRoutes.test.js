@@ -13,8 +13,8 @@ function testAll(){
             const res = await request(app)
                 .post('/auth/login')
                 .send({
-                    name: "Master",
-                    password: "password"
+                    name: 'Master',
+                    password: 'password'
                 })
             expect(res.statusCode).toEqual(200)
             cookie = res.headers['set-cookie'][0].split(';')[0].split('=')[1]
@@ -28,10 +28,10 @@ function testAll(){
                 .post('/patients')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "Andres",
-                    password: "1234",
-                    role: "patient",
-                    email: "andres@example.com"
+                    name: 'Andres',
+                    password: '1234',
+                    role: 'patient',
+                    email: 'andres@example.com'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -43,7 +43,7 @@ function testAll(){
                 .put('/patients/1')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    phone: "123456789"
+                    phone: '123456789'
                 })
             expect(res.statusCode).toEqual(200)
         })

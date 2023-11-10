@@ -11,7 +11,7 @@ class PatientRepository{
     updatePatient(id, email,phone){
         let updateQuery = `update ${TABLE_NAME} set `
         if(email) updateQuery += `email = '${email}'`
-        if(phone) updateQuery += (email? ", ": "") +`phone = '${phone}'`
+        if(phone) updateQuery += (email? ', ': '') +`phone = '${phone}'`
         updateQuery += ` where id=${id};`
         return db.none(updateQuery)
     }

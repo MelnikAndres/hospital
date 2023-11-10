@@ -13,8 +13,8 @@ function testAll(){
             const res = await request(app)
                 .post('/auth/login')
                 .send({
-                    name: "Master",
-                    password: "password"
+                    name: 'Master',
+                    password: 'password'
                 })
             expect(res.statusCode).toEqual(200)
             cookie = res.headers['set-cookie'][0].split(';')[0].split('=')[1]
@@ -28,9 +28,9 @@ function testAll(){
                 .post('/patients')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "Andres",
-                    password: "1234",
-                    role: "patient"
+                    name: 'Andres',
+                    password: '1234',
+                    role: 'patient'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -42,10 +42,10 @@ function testAll(){
                 .post('/doctors')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "AndresDoc",
-                    password: "1234",
-                    role: "doctor",
-                    specialization: "cardiology"
+                    name: 'AndresDoc',
+                    password: '1234',
+                    role: 'doctor',
+                    specialization: 'cardiology'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -57,10 +57,10 @@ function testAll(){
                 .post('/doctors')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    name: "AndresDocGeneral",
-                    password: "1234",
-                    role: "doctor",
-                    specialization: "general"
+                    name: 'AndresDocGeneral',
+                    password: '1234',
+                    role: 'doctor',
+                    specialization: 'general'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -73,7 +73,7 @@ function testAll(){
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
                     patient_id: 1,
-                    symptoms: "headache"
+                    symptoms: 'headache'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -86,8 +86,8 @@ function testAll(){
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
                     patient_id: 1,
-                    symptoms: "heartache",
-                    specialization: "cardiology"
+                    symptoms: 'heartache',
+                    specialization: 'cardiology'
                 })
             expect(res.statusCode).toEqual(200)
         })
@@ -99,7 +99,7 @@ function testAll(){
                 .put('/appointments/1')
                 .set('Cookie', [`jwt=${cookie}`])
                 .send({
-                    status: "finished"
+                    status: 'finished'
                 })
             expect(res.statusCode).toEqual(200)
         })

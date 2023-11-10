@@ -3,11 +3,11 @@ const {typeErrorMsg, requiredErrorMsg, invalidErrorMsg} = require('../../../util
 const {EMAIL, PHONE, NAME, PASSWORD, ROLE} = require('../../../utils/CommonProps')
 
 const ERRORS = {
-    EMAIL_TYPE: typeErrorMsg(EMAIL, "string"),
-    PHONE_TYPE: typeErrorMsg(PHONE, "string"),
-    NAME_TYPE: typeErrorMsg(NAME, "string"),
-    PASSWORD_TYPE: typeErrorMsg(PASSWORD, "string"),
-    ROLE_TYPE: typeErrorMsg(ROLE, "string"),
+    EMAIL_TYPE: typeErrorMsg(EMAIL, 'string'),
+    PHONE_TYPE: typeErrorMsg(PHONE, 'string'),
+    NAME_TYPE: typeErrorMsg(NAME, 'string'),
+    PASSWORD_TYPE: typeErrorMsg(PASSWORD, 'string'),
+    ROLE_TYPE: typeErrorMsg(ROLE, 'string'),
     NAME_REQUIRED: requiredErrorMsg(NAME),
     PASSWORD_REQUIRED: requiredErrorMsg(PASSWORD),
     ROLE_REQUIRED: requiredErrorMsg(ROLE),
@@ -16,16 +16,16 @@ const ERRORS = {
 const createPatientSchema = new Schema()
 
 createPatientSchema.addValidation(EMAIL,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.EMAIL_TYPE
 )
 createPatientSchema.addValidation(PHONE,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.PHONE_TYPE
 )
 
 createPatientSchema.addValidation(NAME,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.NAME_TYPE
 )
 createPatientSchema.addValidation(NAME,
@@ -33,15 +33,15 @@ createPatientSchema.addValidation(NAME,
     ERRORS.NAME_REQUIRED
 )
 createPatientSchema.addValidation(PASSWORD,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.PASSWORD_TYPE
-    )
+)
 createPatientSchema.addValidation(PASSWORD,
     Schema.requiredValidation(),
     ERRORS.PASSWORD_REQUIRED
 )
 createPatientSchema.addValidation(ROLE,
-    Schema.typeValidation("string"),
+    Schema.typeValidation('string'),
     ERRORS.ROLE_TYPE
 )
 createPatientSchema.addValidation(ROLE,
@@ -49,7 +49,7 @@ createPatientSchema.addValidation(ROLE,
     ERRORS.ROLE_REQUIRED
 )
 createPatientSchema.addValidation(ROLE,
-    Schema.requiredValueValidation("patient"),
+    Schema.requiredValueValidation('patient'),
     ERRORS.ROLE_INVALID
 )
 

@@ -1,4 +1,4 @@
-const pgp = require("pg-promise")();
+const pgp = require('pg-promise')()
 const dbConfig = {
     user: 'hospital',
     database: 'hospital',
@@ -6,7 +6,7 @@ const dbConfig = {
     host: process.env.NODE_ENV === 'test'? 'localhost':'hospital-database', 
     port: process.env.NODE_ENV === 'test'? 8081: 5432,
     allowExitOnIdle: true
-};
-const db = pgp(dbConfig);
+}
+const db = pgp(dbConfig)
 
-module.exports = db;
+module.exports = db

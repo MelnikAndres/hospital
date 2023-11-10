@@ -2,18 +2,18 @@ const db = require('./DBconnection')
 
 
 class Filterable {
-    tableName;
-    filters = [];
+    tableName
+    filters = []
     constructor(tableName) {
-        this.tableName = tableName;
+        this.tableName = tableName
     }
 
     consumeQuery(){
-        const selectQuery = `SELECT * FROM ${this.tableName}` + (this.filters.length > 0 ? " WHERE " : "")
-        let compareQuery = ""
+        const selectQuery = `SELECT * FROM ${this.tableName}` + (this.filters.length > 0 ? ' WHERE ' : '')
+        let compareQuery = ''
         for (let i = 0; i < this.filters.length; i++) {
-            const filter = this.filters[i];
-            compareQuery += `${filter.key} ${filter.compare} '${filter.value}'` + (i < this.filters.length - 1 ? " AND " : ";")
+            const filter = this.filters[i]
+            compareQuery += `${filter.key} ${filter.compare} '${filter.value}'` + (i < this.filters.length - 1 ? ' AND ' : ';')
         }
         const query = selectQuery + compareQuery
         this.filters = []
@@ -26,13 +26,13 @@ class Filterable {
 }
 
 class Filter {
-    key;
-    compare;
-    value;
+    key
+    compare
+    value
     constructor(key, compare, value) {
-        this.key = key;
-        this.compare = compare;
-        this.value = value;
+        this.key = key
+        this.compare = compare
+        this.value = value
     }
 }
 

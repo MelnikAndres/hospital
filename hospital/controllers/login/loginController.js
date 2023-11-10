@@ -1,8 +1,8 @@
 const AuthService = require('../../services/AuthService')
 const UserService = require('../../services/UserService')
 const parseExpiration = require('../../utils/parseExpiration')
-const JWT_COOKIE_NAME = "jwt"
-const ERROR_LOGIN_INFO = "Wrong name or password"
+const JWT_COOKIE_NAME = 'jwt'
+const ERROR_LOGIN_INFO = 'Wrong name or password'
 
 class LoginController {
 

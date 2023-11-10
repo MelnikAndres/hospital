@@ -6,7 +6,7 @@ class PrescriptionService{
     #prescriptionRepository = new PrescriptionRepository()
 
     async create(appointment_id,patient_id,info,medicine){
-        await this.#prescriptionRepository.createPrescription(appointment_id,patient_id,info,medicine)
+        return await this.#prescriptionRepository.createPrescription(appointment_id,patient_id,info,medicine)
     }
 
     async getPrescriptionsByPatientId(patientId){
@@ -15,12 +15,12 @@ class PrescriptionService{
     }
 
     async updatePrescription(medicine, info, id){
-        if(!medicine && !info) return;
-        await this.#prescriptionRepository.updatePrescription(id, info, medicine)
+        if(!medicine && !info) return
+        return await this.#prescriptionRepository.updatePrescription(id, info, medicine)
     }
 
     async deletePrescription(id){
-        await this.#prescriptionRepository.deletePrescription(id)
+        return await this.#prescriptionRepository.deletePrescription(id)
     }
 }
 

@@ -1,6 +1,6 @@
-const AppointmentService = require('../../services/AppointmentService');
-const PatientService = require('../../services/PatientService');
-const UserService = require('../../services/UserService');
+const AppointmentService = require('../../services/AppointmentService')
+const PatientService = require('../../services/PatientService')
+const UserService = require('../../services/UserService')
 const {isAdmin,isSameUser} = require('../../utils/Authorization')
 
 

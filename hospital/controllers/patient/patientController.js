@@ -1,6 +1,6 @@
-const PatientService = require('../../services/PatientService');
-const UserService = require('../../services/UserService');
-const { isAdmin, isPatient } = require('../../utils/Authorization');
+const PatientService = require('../../services/PatientService')
+const UserService = require('../../services/UserService')
+const { isAdmin, isPatient, isSameUser } = require('../../utils/Authorization')
 
 class PatientController{
 

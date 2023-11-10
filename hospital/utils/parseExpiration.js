@@ -3,14 +3,14 @@ function parseExpiration(expiration) {
     if (!match) return 0
     const { value, duration } = match.groups
     switch (duration) {
-        case 's':
-            return value * 1000
-        case 'm':
-            return value * 1000 * 60
-        case 'h':
-            return value * 1000 * 60 * 60
-        default:
-            return 0
+    case 's':
+        return value * 1000
+    case 'm':
+        return value * 1000 * 60
+    case 'h':
+        return value * 1000 * 60 * 60
+    default:
+        return 0
     }
 }
 
