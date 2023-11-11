@@ -1,6 +1,6 @@
 services:
   hospital-app:
-    mem_limit: 100m
+    restart: always
     build:
       context: ./hospital
     links:
