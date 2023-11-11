@@ -16,4 +16,4 @@ jobs:
         run: npm run lint
       - name: "Run tests"
         working-directory: ./hospital
-        run: npm test:local
+        run: npm run test:local
