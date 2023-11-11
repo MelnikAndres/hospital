@@ -13,7 +13,7 @@ class AppointmentController{
         const patient = await this.#patientService.getPatientById(req.body.patient_id)
         if(!isAdmin(req.role) && !isSameUser(req.uid,patient.user_id)) return res.sendStatus(403)
 
-        const createappointmentSchema = require('./schemas/createappointmentSchema')
+        const createappointmentSchema = require('./schemas/createAppointmentSchema')
         const errors = createappointmentSchema.validate(req.body)
         if (errors) return res.status(400).json({ errors })
         try{
