@@ -13,7 +13,7 @@ jobs:
         run: docker compose -f docker-compose-test.yml up -d --wait 
       - name: Install dependencies
         working-directory: ./hospital
-        run: npm ci
+        run: sudo npm ci
       - name: Linting app
         working-directory: ./hospital
         run: npm run lint
