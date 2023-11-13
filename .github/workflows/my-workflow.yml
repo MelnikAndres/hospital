@@ -20,3 +20,4 @@ jobs:
       - name: "Run tests"
         working-directory: ./hospital
         run: npm run test:local
+        
